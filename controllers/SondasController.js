@@ -1,14 +1,42 @@
-
+import { Sonda } from "../models/index.js";
 
 class SondasController {
 
-    createSonda = async (req, res) =>{
+    inicializarSondas = async (req, res) => {
         try {
-            res.status(200).send({success: true, message: 'works'});
+            await Sonda.create({ descripcionSonda: "Zona desertica" });
+            await Sonda.create({ descripcionSonda: "Zona junglosa" });
+            await Sonda.create({ descripcionSonda: "Zona arboleada" });
+            await Sonda.create({ descripcionSonda: "Zona oceanica" });
+            await Sonda.create({ descripcionSonda: "Zona asgard" });
+            
+            res.status(200).send({success: true, result: 'Sondas agregadas correctamente!'});
         } catch (error) {
-            res.status(400).send({success: false, message: "Error al crear el usuario (El email no puede ya existir)"});
+            res.status(400).send({success: false, result: "Error al crear sonda."});
         }
-    };
+    }
+
+    mostrarSondas = async (req, res) => {
+        try {
+            let sondas = await Sonda.findAll()
+            
+            res.status(200).send({success: true, result: sondas});
+        } catch (error) {
+            res.status(400).send({success: false, result: "Error al crear sonda."});
+        }
+    }
+
+    //Dejo este metodo y la ruta que lo utiliza comentados en caso de tener que agregar mas Sondas
+    // createSonda = async (req, res) =>{
+    //     try {
+    //         const { descripcion } = req.body
+    //         await Sonda.create({ descripcionSonda: descripcion });
+            
+    //         res.status(200).send({success: true, message: 'Sonda agregada correctamente.'});
+    //     } catch (error) {
+    //         res.status(400).send({success: false, message: "Error al crear sonda."});
+    //     }
+    // };
 
 }
 

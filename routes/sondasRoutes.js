@@ -5,6 +5,8 @@ const sondasController = new SondasController()
 
 const sondasRoutes = Router();
 
-sondasRoutes.use('/someRoute', sondasController.createSonda);
+sondasRoutes.post('/inicializar', sondasController.inicializarSondas)
+sondasRoutes.get('/mostrar')
+// sondasRoutes.post('/create', sondasController.createSonda);
 
 export {sondasRoutes}

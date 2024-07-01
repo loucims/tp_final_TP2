@@ -10,7 +10,7 @@ RegistroTemperatura.init({
         primaryKey: true,
     },
     temperatura: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: false,
         validate: {
             max: 100,

@@ -4,7 +4,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import {dbConnection} from "./dbConnection/dbConnection.js";
 import {SERVER_PORT} from "./config/config.js";
-
+import './models/index.js';
 
 const app = express();
 
