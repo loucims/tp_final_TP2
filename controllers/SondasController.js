@@ -1,4 +1,4 @@
-import { Sonda } from "../models/index.js";
+import { Sonda, RegistroTemperatura } from "../models/index.js";
 
 class SondasController {
 
@@ -23,6 +23,51 @@ class SondasController {
             res.status(200).send({success: true, result: sondas});
         } catch (error) {
             res.status(400).send({success: false, result: "Error al crear sonda."});
+        }
+    }
+
+    mostrarDatosSondas = async (req, res) => {
+        try {
+            let sondas = await Sonda.findAll({
+                include: {
+                    model: RegistroTemperatura
+                }
+            });
+    
+            const resultado = sondas.map(sonda => ({
+                id: sonda.id,
+                descripcionSonda: sonda.descripcionSonda,
+                registros: sonda.RegistroTemperaturas
+            }));
+            
+            res.status(200).send({success: true, result: resultado});
+        } catch (error) {
+            res.status(400).send({success: false, result: "Error al crear sonda."});
+        }
+    }
+
+    mostrarDatosSondaPorId = async (req, res) => {
+        try {
+            const { id } = req.body
+
+            let sonda = await Sonda.findOne({
+                where: {
+                    id: id
+                },
+                include: {
+                    model: RegistroTemperatura
+                }
+            });
+            
+            const resultado = {
+                id: sonda.id,
+                descripcion: sonda.descripcionSonda,
+                registros: sonda.RegistroTemperaturas
+            }
+            
+            res.status(200).send({success: true, result: resultado});
+        } catch (error) {
+            res.status(400).send({success: false, result: error.message});
         }
     }
 

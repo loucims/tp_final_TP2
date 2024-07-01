@@ -14,17 +14,16 @@ let dbConnection = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD,{
     port: DB_PORT,
 });
 try {
-    // const dbConnectionRaw = new Sequelize('', DB_USER, DB_PASSWORD,{
-    //     host: DB_HOST,
-    //     dialect: DB_DIALECT,
-    //     port: DB_PORT,
-    // });
-    // await dbConnectionRaw.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME};`);
-    // await dbConnectionRaw.close()
+    const dbConnectionRaw = new Sequelize('', DB_USER, DB_PASSWORD,{
+        host: DB_HOST,
+        dialect: DB_DIALECT,
+        port: DB_PORT,
+    });
+    await dbConnectionRaw.query(`CREATE DATABASE IF NOT EXISTS ${DB_NAME};`);
+    await dbConnectionRaw.close()
 
 
     await dbConnection.authenticate();
-    // await dbConnection.sync();
     console.log("La conexión se ha establecido exitosamente");
 } catch (error) {
     console.log("No se pudo conectar a la base de datos", error);

@@ -1,5 +1,5 @@
 
-export const validateSondaId = (req, res, next)=>{
+export const validateSondaId = (req, res, next) => {
     try {
         let { id } = req.body;
         if (!id ||
