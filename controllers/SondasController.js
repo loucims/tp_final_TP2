@@ -12,7 +12,7 @@ class SondasController {
             
             res.status(200).send({success: true, result: 'Sondas agregadas correctamente!'});
         } catch (error) {
-            res.status(400).send({success: false, result: "Error al crear sonda."});
+            res.status(400).send({success: false, result: "Error al crear sondas."});
         }
     }
 
@@ -22,7 +22,7 @@ class SondasController {
             
             res.status(200).send({success: true, result: sondas});
         } catch (error) {
-            res.status(400).send({success: false, result: "Error al crear sonda."});
+            res.status(400).send({success: false, result: "Error al mostrar sonda."});
         }
     }
 
@@ -42,7 +42,7 @@ class SondasController {
             
             res.status(200).send({success: true, result: resultado});
         } catch (error) {
-            res.status(400).send({success: false, result: "Error al crear sonda."});
+            res.status(400).send({success: false, result: "Error al mostrar datos de sonda."});
         }
     }
 
